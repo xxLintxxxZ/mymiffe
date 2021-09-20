@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+:root {
+  --soft-pink: #EDC7B7;
+  --lightest-pink: #EEE2DC;
+  --warm-violet: #BAB2B5;
+  --dark-imperial-blue: #123C69;
+  --ruby: #AC3B61;
+ 
+}
+
+.label {
+  color: white;
+  padding: 1px;
+}
+
+.pOrange {background-color: #ff9800;} /* Orange */
+
+h2 {
+    text-align: right;
+    font-family: 'Nunito', sans-serif;
+    padding:  2em 0;
+    border: 2em ;
+    font-size:2em;
+    color: rgb(255, 255, 255);
+    margin: 0;
+  }
+
+h3 {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  padding:  1em 0;
+  color: rgb(252, 252, 252);
+  margin: 0;
+}
+
+h4 {
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    padding:  2em 0;
+    border: 2em ;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    margin: 0;
+  }
+
+
+html {
+  background: var(--lightest-pink);
+}
+
+body {
+  margin: 0;
+  background: rgb(236, 231, 231);
+}
+
+.meat {
+  background: black;
+}
+
+.auction {
+  background: var(--dark-imperial-blue);
+}
+
+.vegetable {
+  background: var(--warm-violet);
+}
+
+.fruit {
+  background: var(--soft-pink);
+}
+
+div {
+  min-height: 200px;
+  background:rgb(248, 242, 242);
+}
+
+.div_small {
+    min-height: 20px;
+    background: rgb(0, 0, 0);
+  }
+img{
+  width: 100%;
+  
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background: black;
+    height: 30px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
