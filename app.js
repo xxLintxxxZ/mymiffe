@@ -6,9 +6,10 @@ if (typeof $ == "undefined") {
 
 // The name is not "hard coded - hence this html would not work"
   const playerInfo = [
-    {name: "player1", qty: 5, rate: 0 , total: ""},
-    {name: "omg", qty: 3, rate: 0, total:""},
-    {name: "player3", qty: 1, rate: 0, total: ""}
+    {name: "player1", qty: 0, rate: 0 , total: 0},
+    {name: "omg", qty: 0, rate: 0, total: 0},
+    {name: "player3", qty: 0, rate: 0, total: 0},
+    {demand: 9}
   ]
 
 
@@ -31,13 +32,17 @@ const getName = () => {
 
 
    const calBuy = () => {
-    const $p1Qty = $('#p1Qty').val()
-    const $p2Qty = $('#p2Qty').val()  
-    const $p3Qty = $('#p3Qty').val()//get the input from submit button 
-    console.log($p1Qty)  //test check
-    playerInfo[0].qty = $p1Qty
-    playerInfo[1].qty = $p2Qty
-    playerInfo[2].qty = $p3Qty
+    const $p1Qty = $('#p1Qty').val() * 1 // IMPT! multiply by 1 to make it into integer, else stored as string
+    const $p2Qty = $('#p2Qty').val() * 1
+    const $p3Qty = $('#p3Qty').val() * 1 //get the input from submit button 
+    console.log(typeof($p1Qty))  
+    console.log(typeof($p2Qty)) 
+    console.log($p1Qty) //test check
+    playerInfo[0].qty = $p1Qty *1
+    playerInfo[1].qty = $p2Qty *1
+    playerInfo[2].qty = $p3Qty *1 
+    const $buyDemand = $p1Qty + $p2Qty +$p3Qty
+    console.log(typeof($buyDemand)) 
     const $p1Rate = $('#p1Rate').val()
     const $p2Rate = $('#p2Rate').val()  
     const $p3Rate = $('#p3Rate').val()//get the input from submit button 
@@ -49,8 +54,10 @@ const getName = () => {
     playerInfo[0].total = $p1Qty * $p1Rate
     playerInfo[1].total = $p2Qty * $p2Rate
     playerInfo[2].total = $p3Qty * $p3Rate
+    playerInfo[3].demand = $buyDemand;
     console.log(playerInfo)
     console.log(playerInfo[0].total)
+    
       
   $('#player1').text(playerInfo[0].total) 
   $('#player2').text(playerInfo[1].total)
@@ -63,11 +70,13 @@ const getName = () => {
   }
 console.log(playerInfo)
 
+const buyDemand = () => {
+
+}
 // playerInfo[0].name = $('#fname').val()
 // console.log(playerInfo[0].name)
 // console.log(playerInfo[1].name)
 // console.log(playerInfo[2].name)
-
 
 // To replace name of 'ostrich' to input obtained from user
 // const addPlayerName = () => {
