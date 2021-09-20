@@ -84,6 +84,26 @@ img{
   
 }
 
+/*table */
+.buyInfoTable {
+  background-color: oldlace;
+  margin: 1em auto;
+  width: 70%;
+  border-spacing: 0;
+}
+
+tr {
+  border-bottom: 2px solid grey;
+}
+td, th {
+  border-bottom: 1px solid grey;
+  padding: .5em;
+}
+
+th {
+  font-size: 1.5em;
+  background: moccasin;
+}
 /* Create four equal columns that floats next to each other */
 .column {
     float: left;

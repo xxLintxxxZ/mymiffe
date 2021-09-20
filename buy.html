@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+        <script src="app.js" , charset="utf-8"></script>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+      <div class="container">
+        <div class="meat">
+            <div class="div_small">
+                <h3>Please make your offer by entering your desired quantities and price per unit</h3> </div>
+            <div>
+              <label for="p1Qty"><span class = "label pOrange" > Input Player 1 Quantity :</span></label><br>
+              <input type="text" id="p1Qty" name="p1Qty"><br><br>
+              <label for="p1Rate"><span class = "label pOrange" > Input Player 1 Unit Rate :</span></label><br>
+              <input type="text" id="p1Rate" name="p1Rate"><br><br>
+
+              <label for="p2Qty"><span class = "label pOrange" > Input Player 2 Quantity :</span></label><br>
+              <input type="text" id="p2Qty" name="p2Qty"><br><br>
+              <label for="p2Rate"><span class = "label pOrange" > Input Player 2 Unit Rate :</span></label><br>
+              <input type="text" id="p2Rate" name="p2Rate"><br><br>
+              
+              <label for="p3Qty"><span class = "label pOrange" > Input Player 3 Quantity :</span></label><br>
+              <input type="text" id="p3Qty" name="p3Qty"><br><br>
+              <label for="p3Rate"><span class = "label pOrange" > Input Player 3 Unit Rate :</span></label><br>
+              <input type="text" id="p3Rate" name="p3Rate"><br><br>
+
+              <button onclick="calBuy()">Submit</button> <br><br>
+              
+              <button type="button" onclick="buyingScreen()">Next</button>
+
+         <div class="div_small" id = "player1" style="background-color:#aaa;">
+            <h4>Player 1</h4>
+           </div>
+           <div class="div_small" id = "player2" style="background-color:#bbb;">
+           <h4>Player 2</h4>
+           </div>
+           <div class="div_small" id= "player3" style="background-color:#ccc;">
+            <h4>Player 3</h4>
+           </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
