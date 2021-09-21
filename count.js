@@ -1,11 +1,13 @@
 //LOGIC CHECKING //
 //qtyWanted x rate < $30
 //* name, qty and rate to test
-
+//==============================//
+//===========DEMAND PHASE======//
+//============================//
   const playerInfo = [
-    {name: "don", qty: 6, rate: 5 , total: 0, qtyBought: 0},
-    {name: "jane", qty: 5, rate: 4, total: 0, qtyBought: 0},
-    {name: "dean", qty: 9, rate: 2, total: 0, qtyBought: 0},
+    {name: "don", qty: 8, rate: 7 , total: 0, qtyBought: 0},
+    {name: "jane", qty: 2, rate: 3, total: 0, qtyBought: 0},
+    {name: "dean", qty: 4, rate: 4, total: 0, qtyBought: 0},
     {demand: ''}
   ]
 
@@ -19,14 +21,13 @@
   playerInfo[2].total = playerInfo[2].qty * playerInfo[2].rate
   //console.log(playerInfo)  // checking to see array info 
 
-
 // program to extract value as an array from an array of objects
 /****************    RATE SORT ************************************/
-/* below function is sorting the qty of the playerInfo array */
+/* below function is sorting the rate of the playerInfo array */
 const rateSort = playerInfo.sort(function(a, b){return a.rate - b.rate});
 
 console.log(rateSort) // from smallest to largest
-//console.log(playerInfo) //array has been sorted changed from smallest qty to largest
+//console.log(playerInfo) //array has been sorted changed from smallest rate to largest
 
 const rateMax = playerInfo[2].rate  // 7 
 const rateMedian = playerInfo[1].rate // 6
@@ -40,7 +41,7 @@ console.log("Max Offer is $" + rateMax + " by " + playerInfo[2].name)
 console.log("Median Offer is $" + rateMedian + " by " + playerInfo[1].name)
 console.log("Min Offer is $" + rateMin + " by " + playerInfo[0].name)
 
-let totalAvail = 10 // a random no. 
+let totalAvail = 11 // a random no. 
 console.log("Total available t-shirts in auction: "+ totalAvail)
 console.log("Total t-shirts wanted by players: " + d) //9
 
@@ -65,18 +66,20 @@ let left1 = totalAvail - p3qtyBought;  //t-shirts avail in auction after firstPl
 let p2qtyBought = (calcRemain (playerInfo[1].qty,left1)) 
 console.log(p2qtyBought)
 
-let last = (calcRemain (playerInfo[0].qty,p2qtyBought)) 
-console.log(last)
+let left2 = left1 - p2qtyBought
+//console.log(left2)
+
+let last = (calcRemain (playerInfo[0].qty,left2)) 
+//console.log(last)
 
 // if (left1 is remaining t-shirts after allocated to player 2) // 
 console.log( playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts") // Player2 has made the highest offer so he gets the qty
 console.log("Remaining t-shirts after " + playerInfo[2].name +  " has bought : "+ left1)// left 1 are the remaining shirts for the 2 players
 
-
 if (left1 > combinedQtyP1P2) {
     console.log("Insufficient t-shirts!")}
     console.log( playerInfo[1].name + ' has bought ' + p2qtyBought + " t-shirts")
-    console.log("Remaining tshirts after " + playerInfo[1].name +  " has bought : "+ left1) //7
+    console.log("Remaining tshirts after " + playerInfo[1].name +  " has bought : "+ left2) //7
     
     if (playerInfo[0].qty > last )
     console.log("Insufficient t-shirts!")
@@ -86,14 +89,6 @@ if (left1 > combinedQtyP1P2) {
         console.log( playerInfo[0].name + ' has bought ' + playerInfo[0].qty + " t-shirts")  }
         console.log(last)
     
-  //if (last < 0 ) {
-  //console.log("No more t-shirts") 
-  //}
- //assign last qty to player with leftover qty//
-//  else 
-//     if (left2 - playerInfo[0].qty == 0){
-//  console.log( playerInfo[0].name + ' has bought ' + playerInfo[0].qty + " t-shirts")
-
 
 
 // program to extract value as an array from an array of objects
