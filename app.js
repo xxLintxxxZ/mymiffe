@@ -57,22 +57,19 @@ const getName = () => {
     playerInfo[3].demand = $buyDemand;
     console.log(playerInfo)
     console.log(playerInfo[0].total)
-    
       
-  $('#player1').text(playerInfo[0].total) 
-  $('#player2').text(playerInfo[1].total)
-  $('#player3').text(playerInfo[2].total)
-
+  $('#p1Buy').text("Hi, P1: The total amount you have offered is " + playerInfo[0].total) 
+  $('#p2Buy').text("Hi, P2: The total amount you have offered is " + playerInfo[1].total)
+  $('#p3Buy').text("Hi, P3: The total amount you have offered is " + playerInfo[2].total)
+  addh3("The Total Demand for this round is "+ $buyDemand)
     // $('#player1').text(playerInfo[0].qty) 
     // $('#player1').text(playerInfo[0].qty) 
     // $('#player1').text(playerInfo[0].qty) 
-  
   }
 console.log(playerInfo)
 
-const buyDemand = () => {
 
-}
+
 // playerInfo[0].name = $('#fname').val()
 // console.log(playerInfo[0].name)
 // console.log(playerInfo[1].name)
@@ -86,39 +83,42 @@ const buyDemand = () => {
 // }
 
 //* not showing data in the table, needs to troubleshoot
-const buildTable = () => {
-  const $buyInfoTable = $("<table>").addClass("buyInfoTable");
-  $buyInfoTable.html(
-    `<thead>
-      <tr>
-        <th>Name</th>
-        <th>Qty</th>
-        <th>Rate</th>
-        <th>Total</th>    
-      </tr>
-    </thead>`
-  );
+// const buildTable = () => {
+//   const $buyInfoTable = $("<table>").addClass("buyInfoTable");
+//   $buyInfoTable.html(
+//     `<thead>
+//       <tr>
+//         <th>Name</th>
+//         <th>Qty</th>
+//         <th>Rate</th>
+//         <th>Total</th>    
+//       </tr>
+//     </thead>`
+//   );
 
-  for (let i of playerInfo) {
-    console.log(i);
-    const $infoRow = $("<tr>");
-    const $nameCell = $("<td>").addClass("name").text(i.name);
-    const $qtyCell = $("<td>").addClass("qty").text(i.qty);
-    const $rateCell = $("<td>").addClass("rate").text(i.rate);
-    const $totalCell = $("<td>").addClass("total").text(i.total);
-    $infoRow.append($nameCell, $qtyCell, $rateCell, $totalCell);
-    $buyInfoTable.append($infoRow);
-      }
-    $("body").append($buyInfoTable);
-};
+//   for (let i of playerInfo) {
+//     console.log(i);
+//     const $infoRow = $("<tr>");
+//     const $nameCell = $("<td>").addClass("name").text(i.name);
+//     const $qtyCell = $("<td>").addClass("qty").text(i.qty);
+//     const $rateCell = $("<td>").addClass("rate").text(i.rate);
+//     const $totalCell = $("<td>").addClass("total").text(i.total);
+//     $infoRow.append($nameCell, $qtyCell, $rateCell, $totalCell);
+//     $buyInfoTable.append($infoRow);
+//       }
+//     $("body").append($buyInfoTable);
+// };
 
 
-const addh2 = () => {
-  let $h2 = $('<h2>').text("Spacer")
-  $('body').append($h2) }
+const addh3 = (anyText) => {
+  let $h3 = $('<h3>').text(anyText)
+  $('body').append($h3) }
+
 
   //$("$h2").hide();
 
+
+  
 
   const buyingScreen = () => {
    window.location.href = "buy.html"
@@ -128,10 +128,10 @@ const addh2 = () => {
   $(() => {
 
     //addPlayerName()
-    addh2();
     getName();
     calBuy();
     buildTable();
+   
     
 
   })  // close document on ready
