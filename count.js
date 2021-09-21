@@ -5,9 +5,9 @@
 //===========DEMAND PHASE======//
 //============================//
   const playerInfo = [
-    {name: "don", qty: 8, rate: 7 , total: 0, qtyBought: 0},
-    {name: "jane", qty: 2, rate: 3, total: 0, qtyBought: 0},
-    {name: "dean", qty: 4, rate: 4, total: 0, qtyBought: 0},
+    {name: "don", qty: 8, rate: 4 , total: 0, qtyBought: 0},
+    {name: "jane", qty: 5, rate: 2, total: 0, qtyBought: 0},
+    {name: "dean", qty: 6, rate: 8, total: 0, qtyBought: 0},
     {demand: ''}
   ]
 
@@ -53,7 +53,7 @@ const calcRemain = (x,y) =>
   if (x - y > 0)
       return y 
       else {
-      return 0}
+      return x} //return x not 0 ~
 }
 
 let p3qtyBought = (calcRemain(totalAvail, playerInfo[2].qty,)) 
@@ -63,16 +63,21 @@ console.log(p3qtyBought)
 let left1 = totalAvail - p3qtyBought;  //t-shirts avail in auction after firstPlayer
 //console.log(left1)
 
-let p2qtyBought = (calcRemain (playerInfo[1].qty,left1)) 
+let p2qtyBought = (calcRemain (left1,playerInfo[1].qty)) 
 console.log(p2qtyBought)
 
-let left2 = left1 - p2qtyBought
+let left2 = left1 - p2qtyBought // t-shirts avail in auction after 2ndPlayer
 //console.log(left2)
 
-let last = (calcRemain (playerInfo[0].qty,left2)) 
+let p1qtyBought = (calcRemain (left2,playerInfo[0].qty)) // t-shirts avail in auction after 1st and 2nd players
 //console.log(last)
 
+let last = left2 -p1qtyBought
+
 // if (left1 is remaining t-shirts after allocated to player 2) // 
+if (playerInfo[2].qty > totalAvail) {
+  console.log("Insufficient t-shirts!")
+}
 console.log( playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts") // Player2 has made the highest offer so he gets the qty
 console.log("Remaining t-shirts after " + playerInfo[2].name +  " has bought : "+ left1)// left 1 are the remaining shirts for the 2 players
 
@@ -81,15 +86,11 @@ if (left1 > combinedQtyP1P2) {
     console.log( playerInfo[1].name + ' has bought ' + p2qtyBought + " t-shirts")
     console.log("Remaining tshirts after " + playerInfo[1].name +  " has bought : "+ left2) //7
     
-    if (playerInfo[0].qty > last )
-    console.log("Insufficient t-shirts!")
-     if (last - playerInfo[0].qty < 0)
-        console.log(playerInfo[0].name +  " has bought : "+ last + " t-shirts") 
-    else if (last - playerInfo[0].qty > 0 ) {
-        console.log( playerInfo[0].name + ' has bought ' + playerInfo[0].qty + " t-shirts")  }
-        console.log(last)
-    
-
+if (left2 > playerInfo[0].qty) {
+  console.log("Insufficient t-shirts!")
+}
+    console.log( playerInfo[0].name + ' has bought ' + p1qtyBought + " t-shirts")
+    console.log("Remaining tshirts after " + playerInfo[0].name +  " has bought : "+ last) 
 
 // program to extract value as an array from an array of objects
 // /***********          QTY SORT ************************************/
