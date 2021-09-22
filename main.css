@@ -14,8 +14,12 @@
   padding: 1px;
 }
 
+.li {
+  color: rgb(23, 22, 22);
+  vertical-align: text-top;
+}
+
 .pOrange {background-color: #ff9800;} /* Orange */
-.plightBlue {background-color: #0091ff;} 
 
 h2 {
     text-align: right;
@@ -31,7 +35,7 @@ h3 {
   text-align: center;
   font-family: 'Nunito', sans-serif;
   padding:  1em 0;
-  color: rgb(140, 66, 1);
+  color: rgb(252, 252, 252);
   margin: 0;
 }
 
@@ -52,7 +56,22 @@ html {
 
 body {
   margin: 0;
-  background: rgb(236, 231, 231);
+  background: rgb(33, 22, 22);
+  
+}
+
+.container {
+  background-image: url("img/start.jpg");
+  position: relative;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.header {
+  background-image : url("img/logo.jpg");
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 20px;
 }
 
 .meat {
@@ -72,7 +91,7 @@ body {
 }
 
 div {
-  min-height: 200px;
+  min-height: 100px;
   background:rgb(248, 242, 242);
 }
 
@@ -82,7 +101,7 @@ div {
   }
 img{
   width: 100%;
-  
+
 }
 
 /*table */
@@ -99,24 +118,79 @@ tr {
 td, th {
   border-bottom: 1px solid grey;
   padding: .5em;
+  text-align: center;
 }
 
 th {
   font-size: 1.5em;
   background: moccasin;
 }
-/* Create four equal columns that floats next to each other */
+
+/* Create three equal columns that float next to each other */
 .column {
-    float: left;
-    width: 25%;
-    padding: 10px;
-    background: black;
-    height: 30px; /* Should be removed. Only for demonstration */
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
   }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 150px;
+  left: 16px;
+  height : 20px;
+}
+.top-mid {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 150px;
+  right: 80px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 20px;
+  left: 200px;
+}
+
+.bottom-center {
+  position: absolute;
+  bottom: 20px;
+  left: 400px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 100px;
+}
+
