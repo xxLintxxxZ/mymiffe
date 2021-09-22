@@ -12,13 +12,59 @@ if (typeof $ == "undefined") {
     {demand: 9}
   ]
 
+//$ from notes // 
+// const playerNamelist = [];
+// const buildArray =() => {
+//    $("form").on("submit", (event) => {
+//     event.preventDefault();
+//     const inputValue = $("#input-box").val();
+//     console.log(inputValue);
+//     playerNamelist.push(inputValue);
+//     $(event.currentTarget).trigger("reset");
+//     render();
+//   });
+// }
+
+// console.log(playerNamelist)
+// console.log(playerNamelist[0])
+
+// playerInfo[0].name = playerNamelist[0]
+// playerInfo[1].name = playerNamelist[1]
+// playerInfo[2].name = playerNamelist[2]
+
+console.log (playerInfo)
+// const object1 = {}
+// const putNames =() => {
+// for (let i=0; i < 3 ; i++) {
+// Object.defineProperty(playerInfo[i], 'name', {
+//   value: playerNamelist[i],
+//   writable: false
+// });
+
+// }
+// };
+// putNames; 
+
+// object1.property1 = 77;
+// // throws an error in strict mode
+
+// console.log(playerInfo);
+// // expected output: 42
+
+  const render = () => {
+    $('ul').empty();
+    playerNamelist.forEach((item) => {    
+      const $playerNamelistItems = ($('ul').append('<li>' + item + '</li>'));
+      $('.container').append($playerNamelistItems)
+    });
+  }
 
  //This should work
   // playerInfo[0].qty = 6
   // playerInfo[1].qty = 7
   // playerInfo[2].qty = 8
 
-const getName = () => {
+const getName = () => {   //prevent default  ---- > thursday classes  ---> 
    const $p1name = $('#p1name').val()
    const $p2name = $('#p2name').val()  
    const $p3name = $('#p3name').val()    //get the input from submit button 
@@ -30,8 +76,14 @@ const getName = () => {
    $('#player2').text(playerInfo[1].name)
    $('#player3').text(playerInfo[2].name) }
 
+   
+   
 
-   const calBuy = () => {
+   $("form").on("submit", (event) => {
+    
+  
+ 
+    event.preventDefault();
     const $p1Qty = $('#p1Qty').val() * 1 // IMPT! multiply by 1 to make it into integer, else stored as string
     const $p2Qty = $('#p2Qty').val() * 1
     const $p3Qty = $('#p3Qty').val() * 1 //get the input from submit button 
@@ -57,81 +109,81 @@ const getName = () => {
     playerInfo[3].demand = $buyDemand;
     console.log(playerInfo)
     console.log(playerInfo[0].total)
+    
       
-  $('#p1Buy').text("Hi, P1: The total amount you have offered is " + playerInfo[0].total) 
-  $('#p2Buy').text("Hi, P2: The total amount you have offered is " + playerInfo[1].total)
-  $('#p3Buy').text("Hi, P3: The total amount you have offered is " + playerInfo[2].total)
-  addh3("The Total Demand for this round is "+ $buyDemand)
+  $('#player1').text(playerInfo[0].total) 
+  $('#player2').text(playerInfo[1].total)
+  $('#player3').text(playerInfo[2].total)
+
     // $('#player1').text(playerInfo[0].qty) 
     // $('#player1').text(playerInfo[0].qty) 
     // $('#player1').text(playerInfo[0].qty) 
-  }
-console.log(playerInfo)
+  
+  });
 
 
+// const list = [];
 
-// playerInfo[0].name = $('#fname').val()
-// console.log(playerInfo[0].name)
-// console.log(playerInfo[1].name)
-// console.log(playerInfo[2].name)
+// $("form").on("submit", (event) => {
+//   const inputValue = $("#input-box").val();
+//   list.push(inputValue)
 
-// To replace name of 'ostrich' to input obtained from user
-// const addPlayerName = () => {
-// const $addPlayer = $('<h3>').text('ostrich')  
-// $('#tableEnd').append($addPlayer) 
+//   console.log(inputValue);
+//   event.preventDefault();
+//   $(event.currentTarget).trigger("reset");
 
-// }
+//   render();
+// });
+
+
 
 //* not showing data in the table, needs to troubleshoot
-// const buildTable = () => {
-//   const $buyInfoTable = $("<table>").addClass("buyInfoTable");
-//   $buyInfoTable.html(
-//     `<thead>
-//       <tr>
-//         <th>Name</th>
-//         <th>Qty</th>
-//         <th>Rate</th>
-//         <th>Total</th>    
-//       </tr>
-//     </thead>`
-//   );
+const buildTable = () => {
+  const $buyInfoTable = $("<table>").addClass("buyInfoTable");
+  $buyInfoTable.html(
+    `<thead>
+      <tr>
+        <th>Name</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Total</th>    
+      </tr>
+    </thead>`
+  );
 
-//   for (let i of playerInfo) {
-//     console.log(i);
-//     const $infoRow = $("<tr>");
-//     const $nameCell = $("<td>").addClass("name").text(i.name);
-//     const $qtyCell = $("<td>").addClass("qty").text(i.qty);
-//     const $rateCell = $("<td>").addClass("rate").text(i.rate);
-//     const $totalCell = $("<td>").addClass("total").text(i.total);
-//     $infoRow.append($nameCell, $qtyCell, $rateCell, $totalCell);
-//     $buyInfoTable.append($infoRow);
-//       }
-//     $("body").append($buyInfoTable);
-// };
-
-
-const addh3 = (anyText) => {
-  let $h3 = $('<h3>').text(anyText)
-  $('body').append($h3) }
+  for (let i of playerInfo) {
+    console.log(i);
+    const $infoRow = $("<tr>");
+    const $nameCell = $("<td>").addClass("name").text(i.name);
+    const $qtyCell = $("<td>").addClass("qty").text(i.qty);
+    const $rateCell = $("<td>").addClass("rate").text(i.rate);
+    const $totalCell = $("<td>").addClass("total").text(i.total);
+    $infoRow.append($nameCell, $qtyCell, $rateCell, $totalCell);
+    $buyInfoTable.append($infoRow);
+      }
+    $("body").append($buyInfoTable);
+};
 
 
+const addh2 = () => {
+  let $h2 = $('<h2>').text("Spacer")
+  $('body').append($h2) }
   //$("$h2").hide();
 
-
-  
-
-  const buyingScreen = () => {
-   window.location.href = "buy.html"
-  }
+  // const buyingScreen = () => {
+  //  window.location.href = "buy.html"
+  // }
 
 
   $(() => {
 
-    //addPlayerName()
-    getName();
-    calBuy();
-    buildTable();
-   
     
-
+    addh2();
+    getName();
+ 
+    //calBuy();
+    buildTable();
+  
+ 
+   
   })  // close document on ready
