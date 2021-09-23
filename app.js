@@ -98,7 +98,7 @@ playerInfo[2].qtyBought  = calcRemain (totalAvail, playerInfo[2].qty)
 // console.log(p3qtyBought)
 
 ///Remain///
-left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
+let left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
 //console.log(left1)
 //playerInfo[2].qtyBought = p3QtyBought
 
@@ -258,7 +258,7 @@ console.log("Remaining t-shirts (if any) wanted after " + playerInfo[2].name +  
 
 
  const cashSort = playerInfo.sort(function(a, b){return a.cashHeld - b.cashHeld});
- //console.log(cashSort)
+ console.log(cashSort)
  
  console.log("The Winner is " + playerInfo[2].name + "!")
 }
