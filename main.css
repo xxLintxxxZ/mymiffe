@@ -61,14 +61,14 @@ body {
 }
 
 .container {
-  background-image: url("start.jpg");
+  background-image: url("img/start.jpg");
   position: relative;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .header {
-  background-image : url("logo.jpg");
+  background-image : url("img/logo.jpg");
   background-repeat: no-repeat;
   text-align: center;
   padding: 20px;
@@ -92,7 +92,7 @@ body {
 
 div {
   min-height: 100px;
-  background:rgb(248, 242, 242);
+  background:rgb(32, 32, 32);
 }
 
 .div_small {
