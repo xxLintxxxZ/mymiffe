@@ -107,7 +107,7 @@ playerInfo[1].qtyBought = calcRemain (left1,playerInfo[1].qty) *1
 //playerInfo[1].qtyBought = playerInfo[1].qty  //p2qtyBought now is playerInfo[1].qtyBought
 
 ///Remain///
-left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
+let left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
 //console.log(left2)
 
 
@@ -116,7 +116,7 @@ playerInfo[0].qtyBought = calcRemain (left2,playerInfo[0].qty) *1 // t-shirts av
 
 
 ///Remain///
-last = left2 - playerInfo[0].qtyBought
+let last = left2 - playerInfo[0].qtyBought
 
 // if (left1 is remaining t-shirts after allocated to player 2) // 
 if (playerInfo[2].qty > totalAvail) {
