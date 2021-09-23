@@ -57,6 +57,7 @@ html {
 body {
   margin: 0;
   background: rgb(33, 22, 22);
+  font-family: 'Nunito', sans-serif;
   
 }
 
@@ -74,21 +75,6 @@ body {
   padding: 20px;
 }
 
-.meat {
-  background: black;
-}
-
-.auction {
-  background: var(--dark-imperial-blue);
-}
-
-.vegetable {
-  background: var(--warm-violet);
-}
-
-.fruit {
-  background: var(--soft-pink);
-}
 
 div {
   min-height: 100px;
@@ -98,6 +84,7 @@ div {
 .div_small {
     min-height: 20px;
     background: rgb(0, 0, 0);
+
   }
 img{
   width: 100%;
@@ -106,35 +93,45 @@ img{
 
 /*table */
 .buyInfoTable {
-  background-color: oldlace;
   margin: 1em auto;
-  width: 70%;
+  width: 100%;
   border-spacing: 0;
+  font-family: 'Nunito', sans-serif;
 }
 
 .sellInfoTable {
-  background-color: oldlace;
   margin: 1em auto;
-  width: 70%;
+  width: 100%;
   border-spacing: 0;
+  font-family: 'Nunito', sans-serif;
 }
 
-tr {
-  border-bottom: 2px solid grey;
-  
+
+table {
+ 
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-td, th {
-  border-bottom: 1px solid grey;
-  padding: .5em;
+
+th {
+  padding: 15px;
+	background-color: rgba(67, 209, 238, 0.485);
+	color: #fff;
   text-align: center;
 }
 
+td {
+	padding: 15px;
+	background-color: rgba(127, 147, 234, 0.356);
+	color: #fff;
+  text-align: center;
+}
+
+
 tr:hover {background-color: lightcoral;}
 
-th {
-  font-size: 1.5em;
-  background: moccasin;
-}
 
 /* Create three equal columns that float next to each other */
 .column {
@@ -149,12 +146,6 @@ th {
   clear: both;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-}
 
 /* Top left text */
 .top-left {
@@ -207,3 +198,4 @@ th {
 #sellForm {
   display: none;
 }
+
