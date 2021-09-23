@@ -5,9 +5,9 @@
         //===========DEMAND PHASE========//
         //===============================//
   const playerInfo = [
-    {name: "don", qty: 2, rate: 6 , total: 0, cashHeld: 30,  sRate : 3},
-    {name: "jane", qty: 5, rate: 2, total: 0,  cashHeld: 30, sRate : 5  },
-    {name: "dean", qty: 6, rate: 5, total: 0, cashHeld: 30, sRate: 4 },
+    {name: "don", qty: 2, rate: 7 , total: 0, cashHeld: 30,  sRate : 3},
+    {name: "jane", qty: 5, rate: 5, total: 0,  cashHeld: 30, sRate : 4  },
+    {name: "dean", qty: 6, rate: 4, total: 0, cashHeld: 30, sRate: 3 },
     {demand: ''}
   ]
 
@@ -20,6 +20,7 @@
 // program to extract value as an array from an array of objects
 /****************    RATE SORT ************************************/
 /* below function is sorting the rate of the playerInfo array */
+
 const rateSort = playerInfo.sort(function(a, b){return a.rate - b.rate});
 
 console.log(rateSort) // from smallest to largest
@@ -46,20 +47,20 @@ const calcRemain = (x,y) =>
       return x} //return x not 0 ~
 }
 
-let p3qtyBought = (calcRemain(totalAvail, playerInfo[2].qty,)) 
+let p3qtyBought = calcRemain(totalAvail, playerInfo[2].qty)
 //console.log(typeof (p2qtyBought) )
 console.log(p3qtyBought)
 
 let left1 = totalAvail - p3qtyBought;  //t-shirts avail in auction after firstPlayer
 //console.log(left1)
 
-let p2qtyBought = (calcRemain (left1,playerInfo[1].qty)) 
+let p2qtyBought = calcRemain (left1,playerInfo[1].qty)
 console.log(p2qtyBought)
 
 let left2 = left1 - p2qtyBought // t-shirts avail in auction after 2ndPlayer
 //console.log(left2)
 
-let p1qtyBought = (calcRemain (left2,playerInfo[0].qty)) // t-shirts avail in auction after 1st and 2nd players
+let p1qtyBought = calcRemain (left2,playerInfo[0].qty) // t-shirts avail in auction after 1st and 2nd players
 //console.log(last)
 
 let last = left2 -p1qtyBought
