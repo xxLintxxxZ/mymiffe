@@ -112,6 +112,13 @@ img{
   border-spacing: 0;
 }
 
+.sellInfoTable {
+  background-color: oldlace;
+  margin: 1em auto;
+  width: 70%;
+  border-spacing: 0;
+}
+
 tr {
   border-bottom: 2px solid grey;
   

@@ -61,7 +61,7 @@ if (typeof $ == "undefined") {
   $('#player2').text(playerInfo[1].total)
   $('#player3').text(playerInfo[2].total) 
 
-//calculate which player gets whihc
+//calculate if player gets their bidded qty successfully
 // program to extract value as an array from an array of objects
 /****************    RATE SORT ************************************/
 /* below function is sorting the rate of the playerInfo array */
@@ -98,7 +98,7 @@ playerInfo[2].qtyBought  = calcRemain (totalAvail, playerInfo[2].qty)
 // console.log(p3qtyBought)
 
 ///Remain///
-let left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
+left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
 //console.log(left1)
 //playerInfo[2].qtyBought = p3QtyBought
 
@@ -107,7 +107,7 @@ playerInfo[1].qtyBought = calcRemain (left1,playerInfo[1].qty) *1
 //playerInfo[1].qtyBought = playerInfo[1].qty  //p2qtyBought now is playerInfo[1].qtyBought
 
 ///Remain///
-let left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
+left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
 //console.log(left2)
 
 
@@ -116,7 +116,7 @@ playerInfo[0].qtyBought = calcRemain (left2,playerInfo[0].qty) *1 // t-shirts av
 
 
 ///Remain///
-let last = left2 - playerInfo[0].qtyBought
+last = left2 - playerInfo[0].qtyBought
 
 // if (left1 is remaining t-shirts after allocated to player 2) // 
 if (playerInfo[2].qty > totalAvail) {
@@ -182,6 +182,33 @@ console.log(playerInfo)
 
 let s = playerInfo[0].sQty + playerInfo[1].sQty + playerInfo[2].sQty;
 console.log(playerInfo) 
+
+
+// const sellInput = () => {
+
+  const qtyBoughtSort = playerInfo.sort(function(a, b){return a.qtyBought - b.qtyBought});
+  console.log(playerInfo)
+  const $p1Qty = $('#p1Qty').val() *1  // IMPT! multiply by 1 to make it into integer, else stored as string
+  const $p2Qty = $('#p2Qty').val() * 1
+  const $p3Qty = $('#p3Qty').val() * 1 //get the input from submit button 
+  console.log(typeof($p1Qty))  
+  console.log(typeof($p2Qty)) 
+  //console.log($p1Qty) //test check
+  playerInfo[0].qty = $p1Qty 
+  playerInfo[1].qty = $p2Qty 
+  playerInfo[2].qty = $p3Qty 
+  console.log(playerInfo[0].name)
+  console.log(playerInfo[1].name)
+  console.log(playerInfo[2].name)
+
+
+  playerInfo[0].sRate = $('#p1sRate').val() *1 //get the input from submit button 
+  playerInfo[1].sRate = $('#p1sRate').val() *1 //get the input from submit button 
+  playerInfo[2].sRate = $('#p1sRate').val() *1 //get the input from submit button 
+
+  console.log(playerInfo)
+
+  console.log(playerInfo[2].sRate) // test check
 
 /****************    Selling Rate Sort  ************************************/
 const sRateSort = playerInfo.sort(function(a, b){return a.sRate - b.sRate});
@@ -258,7 +285,7 @@ console.log("Remaining t-shirts (if any) wanted after " + playerInfo[2].name +  
 
 
  const cashSort = playerInfo.sort(function(a, b){return a.cashHeld - b.cashHeld});
- console.log(cashSort)
+ //console.log(cashSort)
  
  console.log("The Winner is " + playerInfo[2].name + "!")
 }
@@ -268,7 +295,7 @@ console.log("Remaining t-shirts (if any) wanted after " + playerInfo[2].name +  
 //playerInfo[2].qtyBought 
 
 //* to create table info */
-const buildTable = () => {
+const buildBuyTable = () => {
   const $buyInfoTable = $("<table>").addClass("buyInfoTable");
   $buyInfoTable.html(
     `<thead>
@@ -297,6 +324,34 @@ const buildTable = () => {
     $("body").append($buyInfoTable);
 };
 
+const buildSellTable = () => {
+  const $sellInfoTable = $("<table>").addClass("sellInfoTable");
+  $sellInfoTable.html(
+    `<thead>
+      <tr>
+        <th>Name</th>
+        <th>Rate ($) </th>
+        <th>Quantity Sold</th>   
+        <th>Total Amount Earned($)</th>
+        <th>Total Amount Left ($)</th>
+         
+      </tr>
+    </thead>`
+  );
+
+  for (let i of playerInfo) {
+    console.log(i);
+    const $infoRow = $("<tr>");
+    const $nameCell = $("<td>").addClass("name").text(i.name);
+    const $sellRateCell = $("<td>").addClass("sRate").text(i.sRate);
+    const $qtySoldCell = $("<td>").addClass("qtySold").text(i.qtySold);
+    const $totalEarnedCell = $("<td>").addClass("earned").text(i.earned);
+    const $cashHeldCell = $("<td>").addClass("cashHeld").text(i.cashHeld);
+    $infoRow.append($nameCell, $sellRateCell, $qtySoldCell, $totalEarnedCell, $cashHeldCell);
+    $sellInfoTable.append($infoRow);
+      }
+    $("body").append($sellInfoTable);
+};
 
 
 //$space div 
@@ -323,15 +378,27 @@ const addh4 = (y) => {
     $("#buyForm").on("submit", (event) => {
       event.preventDefault();
       calBuy();
-      buildTable();
-      sell();
+      buildBuyTable();
+     
       //addh4(playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts");
-      //$("#buyForm").css("display", "none") // should show this first
-    
-      //$("#sellForm").css("display", "block")
+      $("#buyForm").css("display", "none") // should show this first
+      $(".div_small").css("display", "none") 
+      $("#sellForm").css("display", "block")
 
 
     });
    
+    $("#sellForm").on("submit", (event) => {
+      event.preventDefault();
+      sell();
+      buildSellTable();
+     
+      //addh4(playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts");
+      //$("#buyForm").css("display", "none") // should show this first
+      $(".div_small").css("display", "none") 
+      $("#sellForm").css("display", "block")
+
+
+    });
    
   })  // close document on ready
