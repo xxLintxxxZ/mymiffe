@@ -6,15 +6,21 @@ if (typeof $ == "undefined") {
 
 // The name is not "hard coded - hence this html would not work"
   const playerInfo = [
-    {name: "don", qty: 2, rate: 7 , total: 0, cashHeld: 30,  sRate : 3, qtyBought: 0},
-    {name: "jane", qty: 5, rate: 5, total: 0,  cashHeld: 30, sRate : 4, qtyBought :0  },
-    {name: "dean", qty: 6, rate: 4, total: 0, cashHeld: 30, sRate: 3, qtyBought: 0 },
+    {name: "don", qty: 2, rate: 7 , total: 0, cashHeld: 30,  sRate : 0, qtyBought: 0, qtySold: 0},
+    {name: "jane", qty: 5, rate: 5, total: 0,  cashHeld: 30, sRate : 0, qtyBought :0, qtySold: 0  },
+    {name: "dean", qty: 6, rate: 4, total: 0, cashHeld: 30, sRate: 0, qtyBought: 0, qtySold: 0 },
   ]
 
   let d = playerInfo[0].qty + playerInfo[1].qty + playerInfo[2].qty;
   console.log(playerInfo) //test
 
-  
+  const calcRemain = (x,y) => 
+{
+  if (x - y > 0)
+      return y 
+      else {
+      return x} //return x not 0 ~
+}
 
 
         //===============================//
@@ -80,13 +86,7 @@ console.log("Total t-shirts wanted by players: " + d) //9
 
 //console.log(calcRemain(9,3)) // test
 // Function to allocate t-shirts in the event of insufficient
-const calcRemain = (x,y) => 
-{
-  if (x - y > 0)
-      return y 
-      else {
-      return x} //return x not 0 ~
-}
+
 
 playerInfo[2].qtyBought  = calcRemain (totalAvail, playerInfo[2].qty) 
  //console.log(typeof (playerInfo[1].qtyBought) )
@@ -104,7 +104,7 @@ left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after
 
 playerInfo[1].qtyBought = calcRemain (left1,playerInfo[1].qty) *1
 //console.log(playerInfo[1].qtyBought)
-//playerInfo[1].qtyBought = p2qtyBought  //p2qtyBought now is playerInfo[1].qtyBought
+//playerInfo[1].qtyBought = playerInfo[1].qty  //p2qtyBought now is playerInfo[1].qtyBought
 
 ///Remain///
 left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
@@ -116,7 +116,7 @@ playerInfo[0].qtyBought = calcRemain (left2,playerInfo[0].qty) *1 // t-shirts av
 
 
 ///Remain///
-last = left2 -playerInfo[0].qtyBought
+last = left2 - playerInfo[0].qtyBought
 
 // if (left1 is remaining t-shirts after allocated to player 2) // 
 if (playerInfo[2].qty > totalAvail) {
@@ -157,6 +157,113 @@ if (playerInfo[0].qty > left2) {
   
   };
  
+          //===============================//
+            //===========SUPPLY PHASE========//
+            //===============================//
+
+//sQty need not be defined in array initially
+// const playerInfo = [
+//   {name: "don", qty: 2, rate: 6 , total: 0, cashHeld: 30, sQty: 0, sRate : 3},
+//   {name: "jane", qty: 5, rate: 2, total: 0,  cashHeld: 30, sQty: 0, sRate : 5  },
+//   {name: "dean", qty: 6, rate: 5, total: 0, cashHeld: 30, sQty: 0, sRate: 4 },
+//   {demand: ''}
+// ]
+//Assume players sell all t-shirts bought 
+
+const sell =() => {
+console.log(playerInfo)
+//console.log(playerInfo[2].sQty)
+//console.log(playerInfo[2].qtyBought)
+playerInfo[2].sQty = playerInfo[2].qtyBought *1;
+playerInfo[1].sQty = playerInfo[1].qtyBought;
+playerInfo[0].sQty = playerInfo[0].qtyBought;
+console.log(playerInfo[2].qtyBought)
+console.log(playerInfo)
+
+let s = playerInfo[0].sQty + playerInfo[1].sQty + playerInfo[2].sQty;
+console.log(playerInfo) 
+
+/****************    Selling Rate Sort  ************************************/
+const sRateSort = playerInfo.sort(function(a, b){return a.sRate - b.sRate});
+console.log(sRateSort) // from smallest to largest
+//console.log(playerInfo) //array has been sorted changed from smallest rate to largest
+
+const sRateMin = playerInfo[0].sRate // sell all qty from this 
+const sRateMedian = playerInfo[1].sRate // sell remaining qty from this 
+const sRateMax = playerInfo[2].sRate  // sell remaining qty after first 2 players
+
+
+console.log("Min Offer is $" + sRateMin + " by " + playerInfo[0].name)
+console.log("Median Offer is $" + sRateMedian + " by " + playerInfo[1].name)
+console.log("Max Offer is $" + sRateMax + " by " + playerInfo[2].name) 
+
+//Required items in marketplace//
+let totalRequired = 9 // a random no. 
+console.log("Total t-shirts wanted in marketplace: "+ totalRequired)
+console.log("Total t-shirts on sale by players: " + s) //9
+
+// const calcRemain = (x,y) => 
+// {
+//   if (x - y > 0)
+//       return y 
+//       else {
+//       return x} //return x not 0 ~
+// }
+
+playerInfo[0].qtySold = calcRemain(totalRequired, playerInfo[0].sQty)
+//console.log(typeof (p2qtyBought) )
+console.log(playerInfo[0].qtySold) //2
+let sLeft1 = totalRequired - playerInfo[0].qtySold;  //t-shirts still wanted after firstPlayer sale 
+console.log(sLeft1) //7
+
+playerInfo[1].qtySold = calcRemain(sLeft1, playerInfo[1].sQty)
+console.log(playerInfo[1].qtySold) 
+let sLeft2 = sLeft1 - playerInfo[1].qtySold // t-shirts still wanted after 2ndPlayer sale
+console.log(sLeft2) // 1
+
+playerInfo[2].qtySold  = calcRemain (sLeft2,playerInfo[2].sQty) // t-shirts avail in auction after 1st and 2nd players
+console.log(playerInfo[2].qtySold) 
+let sfinal = sLeft2 - playerInfo[2].qtySold 
+
+//Remaining required //
+if (playerInfo[0].sQty > totalRequired) {
+  console.log("Insufficient t-shirts!")
+}
+console.log( playerInfo[0].name + ' has sold ' + playerInfo[0].qtySold + " t-shirts") // Player has made the lowest offer so he sells the qty
+console.log("Remaining t-shirts wanted after " + playerInfo[0].name +  " has sold : "+ sLeft1)// left 1 are the remaining shirts for the 2 players
+
+if (playerInfo[1].sQty> sLeft1) {
+  console.log("Insufficient t-shirts!")}
+  console.log( playerInfo[1].name + ' has sold ' + playerInfo[1].qtySold + " t-shirts") 
+  console.log("Remaining t-shirts wanted after " + playerInfo[1].name +  " has sold : "+ sLeft2)
+
+  
+if (playerInfo[2].sQty > sLeft2) {
+console.log("Too expensive t-shirts, not buying!") }
+console.log( playerInfo[2].name + ' has sold ' + playerInfo[2].qtySold + " t-shirts") 
+console.log("Remaining t-shirts (if any) wanted after " + playerInfo[2].name +  " has sold : "+ sfinal)
+
+ //Total Earned and Cash Left // 
+ playerInfo[0].earned = playerInfo[0].qtySold * playerInfo[0].sRate
+ playerInfo[0].cashHeld = playerInfo[0].cashHeld + playerInfo[0].earned 
+ console.log(playerInfo[0].name + " has earned $" + playerInfo[0].earned + " and has $" + playerInfo[0].cashHeld )
+
+ playerInfo[1].earned = playerInfo[1].qtySold * playerInfo[1].sRate
+ playerInfo[1].cashHeld = playerInfo[1].cashHeld + playerInfo[1].earned 
+ console.log(playerInfo[1].name + " has earned $" + playerInfo[1].earned + " and has $" + playerInfo[1].cashHeld )
+
+ playerInfo[2].earned = playerInfo[2].qtySold * playerInfo[2].sRate
+ playerInfo[2].cashHeld = playerInfo[2].cashHeld + playerInfo[2].earned 
+ console.log(playerInfo[2].name + " has earned $" + playerInfo[2].earned + " and has $" + playerInfo[2].cashHeld )
+
+
+ const cashSort = playerInfo.sort(function(a, b){return a.cashHeld - b.cashHeld});
+ //console.log(cashSort)
+ 
+ console.log("The Winner is " + playerInfo[2].name + "!")
+}
+
+
 
 //playerInfo[2].qtyBought 
 
@@ -202,6 +309,14 @@ const addh4 = (y) => {
 
   //$("$h2").hide();
 
+
+  // function populateStorage() {
+  //   localStorage.setItem('bgcolor', document.getElementById('bgcolor').value);
+  //   localStorage.setItem('font', document.getElementById('font').value);
+  //   localStorage.setItem('image', document.getElementById('image').value);
+  
+  //   setStyles();
+  // }
   
   $(() => {
 
@@ -209,10 +324,11 @@ const addh4 = (y) => {
       event.preventDefault();
       calBuy();
       buildTable();
+      sell();
       //addh4(playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts");
-      $("#buyForm").css("display", "none")
-      $("#sellForm").css("display", "block")
-
+      //$("#buyForm").css("display", "none") // should show this first
+    
+      //$("#sellForm").css("display", "block")
 
 
     });
