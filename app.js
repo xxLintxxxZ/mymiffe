@@ -98,7 +98,7 @@ playerInfo[2].qtyBought  = calcRemain (totalAvail, playerInfo[2].qty)
 // console.log(p3qtyBought)
 
 ///Remain///
-left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
+let left1 = totalAvail - playerInfo[2].qtyBought;  //t-shirts avail in auction after firstPlayer
 //console.log(left1)
 //playerInfo[2].qtyBought = p3QtyBought
 
@@ -107,7 +107,7 @@ playerInfo[1].qtyBought = calcRemain (left1,playerInfo[1].qty) *1
 //playerInfo[1].qtyBought = playerInfo[1].qty  //p2qtyBought now is playerInfo[1].qtyBought
 
 ///Remain///
-left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
+let left2 = left1 - playerInfo[1].qtyBought // t-shirts avail in auction after 2ndPlayer
 //console.log(left2)
 
 
@@ -116,7 +116,7 @@ playerInfo[0].qtyBought = calcRemain (left2,playerInfo[0].qty) *1 // t-shirts av
 
 
 ///Remain///
-last = left2 - playerInfo[0].qtyBought
+let last = left2 - playerInfo[0].qtyBought
 
 // if (left1 is remaining t-shirts after allocated to player 2) // 
 if (playerInfo[2].qty > totalAvail) {
@@ -203,8 +203,8 @@ console.log(playerInfo)
 
 
   playerInfo[0].sRate = $('#p1sRate').val() *1 //get the input from submit button 
-  playerInfo[1].sRate = $('#p1sRate').val() *1 //get the input from submit button 
-  playerInfo[2].sRate = $('#p1sRate').val() *1 //get the input from submit button 
+  playerInfo[1].sRate = $('#p2sRate').val() *1 //get the input from submit button 
+  playerInfo[2].sRate = $('#p3sRate').val() *1 //get the input from submit button 
 
   console.log(playerInfo)
 
