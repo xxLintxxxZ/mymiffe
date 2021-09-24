@@ -396,7 +396,7 @@ const addh4 = (y) => {
       //addh4(playerInfo[2].name + ' has bought ' + p3qtyBought + " t-shirts");
       //$("#buyForm").css("display", "none") // should show this first
       $(".div_small").css("display", "none") 
-      $("#sellForm").css("display", "block")
+      $("#sellForm").css("display", "inline-block")
 
 
     });
