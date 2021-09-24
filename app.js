@@ -302,9 +302,9 @@ const buildBuyTable = () => {
       <tr>
         <th>Name</th>
         <th>Qty</th>
-        <th>Rate ($) </th>
+        <th>Buy Rate ($) </th>
         <th>Quantity Bought</th>   
-        <th>Total Amount Spent($)</th>
+        <th>Total Amount Spent ($)</th>
          
       </tr>
     </thead>`
@@ -316,8 +316,8 @@ const buildBuyTable = () => {
     const $nameCell = $("<td>").addClass("name").text(i.name);
     const $qtyCell = $("<td>").addClass("qty").text(i.qty);
     const $rateCell = $("<td>").addClass("rate").text(i.rate);
-    const $totalSpentCell = $("<td>").addClass("total").text(i.total);
     const $qtyBoughtCell = $("<td>").addClass("qtyBought").text(i.qtyBought);
+    const $totalSpentCell = $("<td>").addClass("total").text(i.total);
     $infoRow.append($nameCell, $qtyCell, $rateCell, $qtyBoughtCell, $totalSpentCell);
     $buyInfoTable.append($infoRow);
       }
@@ -329,11 +329,11 @@ const buildSellTable = () => {
   $sellInfoTable.html(
     `<thead>
       <tr>
-        <th>Name</th>
-        <th>Rate ($) </th>
-        <th>Quantity Sold</th>   
-        <th>Total Amount Earned($)</th>
-        <th>Total Amount Left ($)</th>
+        <th> Name </th>
+        <th> Selling Rate ($) </th>
+        <th> Quantity Sold</th>   
+        <th> Total Amount Earned ($)</th>
+        <th>T otal Amount Left ($)</th>
          
       </tr>
     </thead>`
