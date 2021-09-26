@@ -1,0 +1,89 @@
+
+          const playerInfo = [
+            {name: "don", qty: 6, rate: 6 , qtyBought: 0, total: 0, cashHeld: 30 },
+            {name: "jane", qty: 5, rate: 6, qtyBought: 0, total: 0,  cashHeld: 30},
+            {name: "dean", qty: 6, rate: 3, qtyBought: 0, total: 0, cashHeld: 30},
+            {demand: ''}
+          ]
+          playerInfo[3].demand = playerInfo[0].qty + playerInfo[1].qty + playerInfo[2].qty;
+          let d = playerInfo[0].qty + playerInfo[1].qty + playerInfo[2].qty;
+          console.log(playerInfo) //test
+        
+          //console.log(playerInfo)  // checking to see array info 
+        
+        // program to extract value as an array from an array of objects
+        /****************    RATE SORT ************************************/
+        /* below function is sorting the rate of the playerInfo array */
+        
+        //const rateAscSort = playerInfo.sort(function(a, b){return a.rate - b.rate});  // sort ascending
+        const rateDescSort = playerInfo.sort(function(a, b){return b.rate - a.rate}); // sort descending
+        
+        console.log(rateDescSort) 
+        console.log(playerInfo) //array has been sorted changed from smallest rate to largest
+        
+        const rateMax = playerInfo[0].rate  // 7 
+        const rateMedian = playerInfo[1].rate // 6
+        const rateMin = playerInfo[2].rate //5
+
+        
+        console.log("Max Offer is $" + rateMax + " by " + playerInfo[0].name) 
+        console.log("Median Offer is $" + rateMedian + " by " + playerInfo[1].name)
+        console.log("Min Offer is $" + rateMin + " by " + playerInfo[2].name)
+        
+        let totalAvail = 11 // a random no. 
+        console.log("Total available t-shirts in auction: "+ totalAvail)
+        console.log("Total t-shirts wanted by players: " + d) //9
+        //console.log(calcRemain(9,3)) // test
+     
+
+        // const playerInfo = [
+        //   {name: "don", qty: 8, rate: 6 , qtyBought: 0, total: 0, cashHeld: 30 },
+        //   {name: "jane", qty: 5, rate: 6, qtyBought: 0, total: 0,  cashHeld: 30},
+        //   {name: "dean", qty: 6, rate: 3, qtyBought: 0, total: 0, cashHeld: 30},
+        // ]
+
+        const [,,{qty}] = playerInfo;
+        console.log(qty)
+
+        const chkSameRate = (x,y,z) => 
+        {
+          let last = 0
+          if ( (x + y + z)/3 === x) {
+              playerInfo[0].qtyBought = Math.floor (totalAvail/3)
+              playerInfo[1].qtyBought =  Math.floor (totalAvail/3)
+              playerInfo[2].qtyBought =  Math.floor (totalAvail/3)
+              x = Math.floor (totalAvail/3)
+              y = Math.floor (totalAvail/3)
+              z = Math.floor (totalAvail/3)
+              console.log(x)
+              console.log(y)
+              console.log(z)
+            }
+
+              else if ( x === y ) {
+                playerInfo[0].qtyBought = Math.floor (totalAvail/2)
+                playerInfo[1].qtyBought =  Math.floor (totalAvail/2)
+                playerInfo[2].qtyBought =  totalAvail - playerInfo[0].qtyBought
+               
+              } 
+              else if (y == z) {
+                if ( totalAvail >= playerInfo[0].qty ) {
+                  playerInfo[0].qtyBought = playerInfo[0].qty
+                  last = totalAvail - playerInfo[0].qtyBought 
+                  playerInfo[1].qtyBought = Math.floor (last/2)
+                  playerInfo[2].qtyBought =  Math.floor (last/2)  
+                    }
+                 else {
+                    playerInfo[0].qtyBought = totalAvail
+                    last = 0
+                    playerInfo[1].qtyBought = Math.floor (last/2)
+                    playerInfo[2].qtyBought =  Math.floor (last/2)  
+                     }
+             }
+          }
+        
+       chkSameRate (6,3,3)
+       console.log("just a random text")
+       console.log(playerInfo[0].qtyBought)
+       console.log(playerInfo[1].qtyBought)
+       console.log(playerInfo[2].qtyBought)
